@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글 수정</title>
+</head>
+<body>
+<h2>게시글 수정</h2>
+<form th:action="@{/posts/edit/{id}(id=${post.id})}" method="post" enctype="multipart/form-data">
+    <label>제목:<input type="text" name="title" th:value="${post.title}"></label><br>
+    <label>내용:<textarea name="content" th:text="${post.content}"></textarea></label><br>
+    현재 파일: <span th:text="${post.filename}"></span><br>
+    새 파일 선택: <input type="file" name="file"><br>
+    <button type="submit">수정 완료</button>
+</form>
+<a href="/mypage">마이페이지로</a>
+</body>
+</html>

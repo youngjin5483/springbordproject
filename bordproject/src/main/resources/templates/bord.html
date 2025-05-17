@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bord</title>
+</head>
+<body>
+<div class="container">
+    <h2>게시판</h2>
+    <p>현재 로그인한 사용자 <strong th:text="${username}"></strong></p>
+    <a href="/logout">로그아웃</a>
+    <a class="new-post" href="/bordwrite">새 글 작성</a>
+    <a href="/mypage"> 마이페이지</a>
+    <table>
+        <thead>
+        <tr>
+            <th>제목</th>
+            <th>내용</th>  <!-- 내용 컬럼 추가 -->
+            <th>작성자</th>
+            <th>파일</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="post : ${posts}">
+            <td>
+                <a th:text="${post.title}"></a>
+            </td>
+            <td th:text="${post.content}"></td> <!-- 내용 출력 -->
+            <td th:text="${post.username}"></td>
+            <td>
+                <a th:if="${post.filename != null}"
+                   th:href="@{/files/{filename}(filename=${post.filename})}"
+                   th:text="${post.filename}"></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

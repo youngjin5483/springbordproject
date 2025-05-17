@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>마이페이지</title>
+</head>
+<body>
+<h2>마이페이지 - <span th:text="${username}"></span></h2>
+<table border="1">
+    <tr>
+        <th>제목</th>
+        <th>내용</th>
+        <th>파일</th>
+        <th>수정</th>
+        <th>삭제</th>
+    </tr>
+    <tr th:each="post : ${posts}">
+        <td th:text="${post.title}"></td>
+        <td th:text="${post.content}"></td>
+        <td>
+            <a th:if="${post.filename != null}"
+               th:href="@{/files/{filename}(filename=${post.filename})}"
+               th:text="${post.filename}"></a>
+        </td>
+        <td>
+            <a th:href="@{/posts/edit/{id}(id=${post.id})}">수정</a>
+        </td>
+        <td>
+            <a th:href="@{/posts/delete/{id}(id=${post.id})}">삭제</a>
+        </td>
+    </tr>
+</table>
+
+<a href="/">돌아가기</a>
+</body>
+</html>
